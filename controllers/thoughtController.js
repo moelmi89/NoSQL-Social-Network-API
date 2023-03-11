@@ -70,5 +70,5 @@ const thoughtController = {
       },
     };
     
-    module.exports = thoughtsController;
+    module.exports = thoughtController;
   
