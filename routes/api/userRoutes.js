@@ -1,27 +1,23 @@
-const { Router } = require('express');
+const router = require("express").Router();
+//import user methods
 const {
   getUsers,
   getSingleUser,
   createUser,
+  updateUser,
   deleteUser,
-  addFriend,
-  deleteFriend,
-} = require('../../controllers/userControllers');
+  addUserFriend,
+  deleteUserFriend,
+} = require("../../controllers/userControllers");
 
-const router = Router();
+// routes
+router.route("/").get(getUsers).post(createUser);
 
-router.route('/')
-  .get(getUsers)
-  .get(getSingleUser)
-  .post(createUser);
+router.route("/:userId").get(getSingleUser).put(updateUser).delete(deleteUser);
 
-router.route('/:userId')
-.get(getUsers)
-.get(getSingleUser)
-.delete(deleteUser);
-
-router.route('/:userId/friends/:friendId')
-.post(addFriend)
-.delete(deleteFriend);
+router
+  .route("/:userId/friends/:friendId")
+  .post(addUserFriend)
+  .delete(deleteUserFriend);
 
 module.exports = router;
